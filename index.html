@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LOGAN_HEX | SYSTEM OVERRIDE</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      color: #00FF00;
+      font-family: 'Courier New', monospace;
+      overflow: hidden;
+      cursor: none;
+    }
+
+    #header {
+      background-color: #111;
+      color: red;
+      padding: 15px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      border-bottom: 2px solid #00FF00;
+    }
+
+    #terminal {
+      padding: 20px;
+      white-space: pre-wrap;
+      font-size: 18px;
+    }
+
+    #warning {
+      position: fixed;
+      top: 15%;
+      width: 100%;
+      text-align: center;
+      color: red;
+      font-size: 38px;
+      font-weight: bold;
+      animation: flicker 1s infinite alternate;
+      display: none;
+    }
+
+    #face {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 250px;
+      opacity: 0.95;
+      filter: drop-shadow(0 0 15px red);
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; }
+      100% { opacity: 0.3; }
+    }
+
+    @keyframes shake {
+      0% { transform: translate(0px, 0px); }
+      25% { transform: translate(5px, -5px); }
+      50% { transform: translate(-5px, 5px); }
+      75% { transform: translate(5px, 5px); }
+      100% { transform: translate(-5px, -5px); }
+    }
+
+    .shaking {
+      animation: shake 0.1s infinite;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header">💀 SYSTEM BREACH BY LOGAN_HEX 💀</div>
+  <div id="terminal">[Press any key to initiate hack simulation...]\n</div>
+  <div id="warning">🔥 YOU HAVE BEEN HACKED BY LOGAN_HEX 🔥</div>
+  <img id="face" src="https://i.imgur.com/zZ5ZpOo.png" alt="Hacker Face">
+
+  <audio id="sfx" src="https://www.soundjay.com/human/sounds/scream-01.mp3" preload="auto"></audio>
+
+  <script>
+    const terminal = document.getElementById("terminal");
+    const warning = document.getElementById("warning");
+    const face = document.getElementById("face");
+    const sound = document.getElementById("sfx");
+
+    const lines = [
+      "[logan_hex@core ~]$ Initializing system breach...",
+      ">> Injecting trojan.v2",
+      ">> Firewall disabled 🔥",
+      ">> Uploading virus.exe...",
+      ">> Extracting webcam feed...",
+      ">> Accessing personal files...",
+      ">> Uploading to dark web...",
+      ">> SYSTEM OVERRIDE IN PROGRESS",
+      ">> USER LOCKOUT SUCCESSFUL",
+      ">>> Finalizing... 3... 2... 1...",
+      "[SYSTEM COMPROMISED BY LOGAN_HEX 💀]"
+    ];
+
+    let i = 0;
+
+    function typeLine() {
+      if (i < lines.length) {
+        terminal.innerText += lines[i] + '\n';
+        i++;
+        setTimeout(typeLine, 650);
+      } else {
+        warning.style.display = 'block';
+        face.style.display = 'block';
+        document.body.classList.add('shaking');
+        fakeDefenderPopup();
+      }
+    }
+
+    function fakeDefenderPopup() {
+      setTimeout(() => {
+        alert("🛑 Windows Defender Alert:\nThreat: LOGAN_HEX\nSystem is no longer secure.\nALL DATA EXPOSED.");
+      }, 2000);
+    }
+
+    // Function to request fullscreen
+    function goFullscreen() {
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+      } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+        document.documentElement.mozRequestFullScreen();
+      } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari, Opera
+        document.documentElement.webkitRequestFullscreen();
+      } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+        document.documentElement.msRequestFullscreen();
+      }
+    }
+
+    document.addEventListener("keydown", () => {
+      if (i === 0) {
+        sound.play().catch(() => {});
+        terminal.innerText = "";
+        typeLine();
+        goFullscreen();  // Trigger fullscreen on first key press
+      }
+    });
+  </script>
+</body>
+</html>
